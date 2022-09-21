@@ -13,11 +13,18 @@ def despesa_mes():
                 "success": True
             }
             return jsonify(data)
+        return {
+                "data": [],
+                "success": False
+            }
 
     if request.method == 'POST':
         obj = despesas.save_db(request_form=request.form)
         if not obj:
-            return 'Dados inválidos!'
+            return {
+                "data": [],
+                "success": False
+            }
         data = {
             "data": obj,
             "success": True
